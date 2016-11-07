@@ -2,21 +2,26 @@ public class ListController {
 	private ToDoList toDoList;
 	private ListView view;
 
+
+
 	public ListController(ToDoList l){
 		this.toDoList = l;
 		this.view = new ListView();
 	}
 
 	public void showList(String statusCode){
+		String message;
 		switch (statusCode) {
-			case "full": view.showFullList(toDoList);
+			case "full": message = view.buildFullList(toDoList);
 				break;
-			case "pending": view.showPendingList(toDoList);
+			case "pending": message = view.buildPendingList(toDoList);
 				break;
-			case "complete": view.showCompletedList(toDoList);
+			case "complete": message = view.buildCompletedList(toDoList);
 				break;
-			default: System.out.println("Use 'full', 'pending', or 'complete' to view the respective list.");
+			default: message = ("Use 'full', 'pending', or 'complete' to view the respective list.");
 		}
+
+		System.out.println(message);
 	}
 
 	public void addItem(String s){
